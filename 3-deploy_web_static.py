@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-'''fcreates and distributes an archive to your web servers, using deploy():
-'''
-
+"""A module for web application deployment with Fabric."""
 import os
 from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-env.hosts = ['34.138.32.248', '3.226.74.205']
+env.hosts = ["34.73.0.174", "35.196.78.105"]
+"""The list of host server IP addresses."""
 
 
 @runs_once
@@ -54,7 +53,7 @@ def do_deploy(archive_path):
         run("rm -rf {}web_static".format(folder_path))
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(folder_path))
-        print('New version is now LIVE!')
+        print('New version deployed!')
         success = True
     except Exception:
         success = False
